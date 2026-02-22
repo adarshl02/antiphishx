@@ -6,7 +6,6 @@ import textRoutes from "./routes/text.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import dotenv from "dotenv";
 import cookieParser from 'cookie-parser';
-import fetch from "node-fetch";
 
 dotenv.config();
 
@@ -34,7 +33,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-
+app.use("/", (req, res) => {
+  res.status(200).json("Welcome To AntiPhishX");
+});
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/text", textRoutes);
@@ -45,9 +46,7 @@ app.use((req, res, next) => {
   res.status(404).send("Route not found");
 });
 
-app.use("/", (req, res) => {
-  res.status(200).json("Welcome To AntiPhishX");
-});
+
 
 
 
