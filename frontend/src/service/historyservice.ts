@@ -2,7 +2,7 @@ import axios from 'axios';
 import { handleApiError } from './apierror';
 import { HistoryItem } from '@/types/history';
 
-const API_URL = 'https://antiphish-2.onrender.com/api/v1';
+const API_URL = 'https://antiphishx-backend.vercel.app/api/v1';
 
 export const fetchUserHistory = async () => {
   try {

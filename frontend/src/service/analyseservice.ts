@@ -2,7 +2,7 @@ import axios from 'axios';
 import { handleApiError } from './apierror';
 
 
-const API_URL = 'https://antiphish-2.onrender.com/api/v1';
+const API_URL = 'https://antiphishx-backend.vercel.app/api/v1';
 
 const token = localStorage.getItem('AntiPhishXauthToken') || '';
 

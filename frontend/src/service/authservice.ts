@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://antiphish-2.onrender.com/api/v1';
+const API_URL = 'https://antiphishx-backend.vercel.app/api/v1';
 
 
 export const googleSignup = async (userInfo: { name: string; email: string; avatar: string }) => {
