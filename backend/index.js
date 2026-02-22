@@ -1,7 +1,6 @@
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
-import logger from "./libs/logger.js";
 import textRoutes from "./routes/text.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import dotenv from "dotenv";
@@ -42,13 +41,13 @@ app.use("/api/v1/text", textRoutes);
 
 
 app.use((req, res, next) => {
-  logger.warn(`Unhandled route: ${req.method} ${req.url}`);
+ console.log(`Unhandled route: ${req.method} ${req.url}`);
   res.status(404).send("Route not found");
 });
 
 
 const shutdown = (signal) => {
-  logger.info(`Received ${signal}. Shutting down...`);
+  console.log(`Received ${signal}. Shutting down...`);
   process.exit(0);
 };
 
@@ -59,10 +58,10 @@ process.on("SIGUSR2", () => shutdown("SIGUSR2"));
 
 // local run
 if (process.env.VERCEL !== "1") {
-  app.listen(PORT, () => {
-  logger.info("Welcome To Auth Service");
-  logger.info(`AntiPhishX Listening On Port ${PORT}`);
-  logger.info("MORGAN ENABLED");
+  app.listen(8000, () => {
+  console.log("Welcome To Auth Service");
+  console.log(`AntiPhishX Listening On Port 8000`);
+  console.log("MORGAN ENABLED");
 });
 }
 export default app;
