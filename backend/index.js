@@ -62,21 +62,6 @@ const server = app.listen(PORT, () => {
 });
 
 
-async function predictUrl(url) {
-  const res = await fetch("http://localhost:8080/predict", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ url })
-  });
-  const data = await res.json();
-  return data;
-}
-
-const result = await predictUrl("http://www.raci.it/component/user/reset.html");
-console.log(result);
-
-
-
 function shutdown(signal) {
   console.log(`Received ${signal}. Closing server...`);
   server.close(() => {

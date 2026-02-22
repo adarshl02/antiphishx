@@ -15,6 +15,7 @@ interface AuthContextType {
    userTextHistory: TextHistoryItem[];
   userImageHistory: ImageHistoryItem[];
   refreshHistory: () => Promise<void>;
+  setIsLoading: (loading: boolean) => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
@@ -23,6 +24,7 @@ export const AuthContext = createContext<AuthContextType>({
   userTextHistory: [],
   userImageHistory: [],
   refreshHistory: async () => {},
+  setIsLoading : async (loading: boolean) => {},
 });
 
 export const useAuth = () => {

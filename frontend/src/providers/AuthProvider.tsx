@@ -12,7 +12,7 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [userTextHistory, setUserTextHistory] = useState<TextHistoryItem[]>([]);
   const [userImageHistory, setUserImageHistory] = useState<ImageHistoryItem[]>([]);
 
@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   useEffect(() => {
     try {
       const token = localStorage.getItem("AntiPhishXauthToken");
-
+      setIsLoading(true);
       if (token) {
         const decoded: {
           name: string;
@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   }, [refreshHistory]);
 
-  const value = { user, isLoading , userTextHistory, userImageHistory, refreshHistory};
+  const value = { user, isLoading ,setIsLoading, userTextHistory, userImageHistory, refreshHistory};
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

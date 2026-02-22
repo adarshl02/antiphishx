@@ -1,4 +1,5 @@
 import { useGoogleLogin } from "@react-oauth/google";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -7,14 +8,17 @@ import { LogOut, User as UserIcon } from "lucide-react";
 import { googleSignup } from "@/service/authservice";
 import { toast } from "sonner";
 import axios from "axios";
+import {ClipLoader} from "react-spinners";
 
 export const GoogleLoginButton = () => {
-  const { user, isLoading } = useAuth();
+  const { user } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
   const login = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
         // Get user info from Google
+        setIsLoading(true);
         console.log(tokenResponse);
         const userInfo = await axios.get(
           'https://www.googleapis.com/oauth2/v3/userinfo',
@@ -40,6 +44,8 @@ export const GoogleLoginButton = () => {
       } catch (error) {
         console.error("Login error:", error);
         toast.error("Sign in failed. Please try again.");
+      }finally{
+        setIsLoading(false);
       }
     },
     onError: () => {
@@ -55,7 +61,9 @@ export const GoogleLoginButton = () => {
 
   if (isLoading) {
     return (
-      <div className="w-10 h-10 rounded-full bg-card/50 animate-pulse" />
+      <div>
+        <ClipLoader size={20} color="#4A90E2" />
+      </div>
     );
   }
 
