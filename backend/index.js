@@ -55,18 +55,13 @@ process.on("SIGINT", () => shutdown("SIGINT"));
 process.on("SIGTERM", () => shutdown("SIGTERM"));
 process.on("SIGUSR2", () => shutdown("SIGUSR2"));
 
-const server = app.listen(PORT, () => {
+// local run
+if (process.env.VERCEL !== "1") {
+  app.listen(PORT, () => {
   logger.info("Welcome To Auth Service");
   logger.info(`AntiPhishX Listening On Port ${PORT}`);
   logger.info("MORGAN ENABLED");
 });
-
-
-function shutdown(signal) {
-  console.log(`Received ${signal}. Closing server...`);
-  server.close(() => {
-    console.log("Server closed");
-    process.exit(0);
-  });
 }
+export default app;
 
