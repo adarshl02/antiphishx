@@ -83,7 +83,7 @@ bun install
 3. Create a `.env` file:
 ```env
 # AWS Configuration
-AWS_ACCESS_KEY_ID=your_access_key
+MY_AWS_ACCESS_KEY_ID=your_access_key
 AWS_SECRET_ACCESS_KEY=your_secret_key
 AWS_REGION=your_region
 
