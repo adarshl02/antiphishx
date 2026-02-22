@@ -40,7 +40,7 @@ export const Header = () => {
       <p className="text-sm md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
         Advanced threat detection for suspicious content. 
         <span className="text-primary font-medium"> Analyze text and images</span> for phishing attempts 
-        with military-grade security protocols.
+        with military-grade security protocols..
       </p>
       
       <div className="flex items-center justify-center gap-8 mt-6 text-xs md:text-sm text-muted-foreground ">
