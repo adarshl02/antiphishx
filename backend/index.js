@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).json("Welcome To AntiPhishX");
 });
 
@@ -47,7 +47,10 @@ app.use((req, res, next) => {
 });
 
 
-
+const shutdown = (signal) => {
+  logger.info(`Received ${signal}. Shutting down...`);
+  process.exit(0);
+};
 
 
 process.on("SIGINT", () => shutdown("SIGINT"));
